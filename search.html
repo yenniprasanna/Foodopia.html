@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Products - Online Food Ordering System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="scripts.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Search Products</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="search.html">search</a></li>
+                <li><a href="categories.html">Categories</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <input type="text" id="search-input" placeholder="Search for products...">
+        <div id="search-results" class="product-list">
+            <!-- Search results will be inserted here dynamically -->
+        </div>
+    </main>
+    <script>
+        // Simulated search results data
+        var products = [
+            { name: "Dosa", price:"50 INR"},
+            { name: "idli", price: "50 INR" },
+            { name: "Dum-Biryani", price: "350 INR" },
+            { name: "vada", price: "50 INR" },
+            { name: "curd-vada", price: "50" },
+            { name: "Lemon-Rice", price: "50 INR" },
+            { name: "Semya-upma", price: "65 INR" },
+            { name: "Onion-pakodi", price: "50 INR" },
+            { name: "Payasam", price: "50 INR" },
+            { name: "Poori", price: "60 INR" },
+            { name: "Spicy Mushroom-Biryani", price: "90 INR" },
+            { name: "Aloo parata", price: "50 INR" },
+            { name: "Mango-Rice", price: "50 INR" },
+            
+        ];
+
+        // Function to dynamically fill search results
+        function showSearchResults(searchTerm) {
+            var searchResultsDiv = document.getElementById("search-results");
+            searchResultsDiv.innerHTML = ""; // Clear previous results
+
+            // Filter products based on search term
+            var filteredProducts = products.filter(function(product) {
+                return product.name.toLowerCase().includes(searchTerm.toLowerCase());
+            });
+
+            // Display filtered products
+            filteredProducts.forEach(function(product) {
+                var productDiv = document.createElement("div");
+                productDiv.classList.add("product");
+                productDiv.innerHTML = "<h3>" + product.name + "</h3><p>Price: " + product.price + "</p>";
+                searchResultsDiv.appendChild(productDiv);
+            });
+        }
+
+        // Event listener for input changes
+        var searchInput = document.getElementById("search-input");
+        searchInput.addEventListener("input", function() {
+            var searchTerm = searchInput.value.trim(); // Trim whitespace
+            showSearchResults(searchTerm);
+        });
+    </script>
+</body>
+</html>
